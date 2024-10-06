@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+:<?xml version="1.0" encoding="utf-8"?>
 <!--
 /* //device/apps/common/assets/res/any/strings.xml
 **
@@ -6514,4 +6514,7 @@ ul.</string>
     <string name="biometric_dangling_notification_action_set_up">Set up</string>
     <!-- Biometric dangling notification "Not now" action button -->
     <string name="biometric_dangling_notification_action_not_now">Not now</string>
+    <!-- Alert slider proc nodes paths. -->
+    <string name="alert_slider_state_path"></string>
+    <string name="alert_slider_uevent_match_path"></string>
 </resources>
