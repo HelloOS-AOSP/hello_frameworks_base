@@ -74,9 +74,13 @@
   <!-- Cycle through ringer modes -->
   <java-symbol type="string" name="volume_dialog_ringer_guidance_normal" />
 
-    <!-- Should we listen for fingerprints when the screen is off?  Devices
-         with a rear-mounted sensor want this, but certain devices have
-         the sensor embedded in the power key and listening all the time
-         causes a poor experience. -->
-    <java-symbol type="bool" name="config_fingerprintWakeAndUnlock" />
+  <!-- Should we listen for fingerprints when the screen is off?  Devices
+       with a rear-mounted sensor want this, but certain devices have
+       the sensor embedded in the power key and listening all the time
+       causes a poor experience. -->
+  <java-symbol type="bool" name="config_fingerprintWakeAndUnlock" />
+
+  <!-- Status bar DT2S gesture -->
+  <java-symbol type="bool" name="config_dt2sGestureAvailable" />
+  <java-symbol type="bool" name="config_dt2sGestureEnabledByDefault" />
 </resources>
