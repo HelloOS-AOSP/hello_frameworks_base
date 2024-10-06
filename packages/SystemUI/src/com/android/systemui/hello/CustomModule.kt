@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.systemui.pixelage
+package com.android.systemui.hello
 
 import com.android.systemui.qs.tileimpl.QSTileImpl
 import com.android.systemui.qs.tiles.AutoBrightnessTile
