@@ -2538,12 +2538,12 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         initSingleKeyGestureRules(injector.getLooper());
         mButtonOverridePermissionChecker = injector.getButtonOverridePermissionChecker();
         mSideFpsEventHandler = new SideFpsEventHandler(mContext, mHandler, mPowerManager);
-    }
 
         final String[] deviceKeyHandlerLibs = res.getStringArray(
                 com.android.internal.R.array.config_deviceKeyHandlerLibs);
         final String[] deviceKeyHandlerClasses = res.getStringArray(
                 com.android.internal.R.array.config_deviceKeyHandlerClasses);
+
         for (int i = 0;
                 i < deviceKeyHandlerLibs.length && i < deviceKeyHandlerClasses.length; i++) {
             try {
@@ -2561,6 +2561,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         if (DEBUG_INPUT) {
             Slog.d(TAG, "" + mDeviceKeyHandlers.size() + " device key handlers loaded");
         }
+    }
 
     private void initKeyCombinationRules() {
         mKeyCombinationManager = new KeyCombinationManager(mHandler);

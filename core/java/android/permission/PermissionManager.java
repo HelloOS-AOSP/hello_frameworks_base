@@ -1380,7 +1380,7 @@ public final class PermissionManager {
             if (pkgName != null) {
                 pkgNames.add(pkgName);
             }
-
+        }
         for (String pkgName: sExemptedPkgNames) {
             if (pkgName != null) {
                 pkgNames.add(pkgName);

@@ -464,14 +464,16 @@ public class GlobalActionsDialogLite implements DialogInterface.OnDismissListene
                 com.android.internal.R.array.config_rebootActionsList);
         settingsChanged();
     }
+
     public void settingsChanged() {
         final String globalAction = Settings.System.getStringForUser(mContext.getContentResolver(),
                 Settings.System.GLOBAL_ACTIONS_LIST, UserHandle.USER_CURRENT);
+
         if (globalAction != null) {
             mRootMenuActions = globalAction.split(",");
         } else {
             mRootMenuActions = mDefaultMenuActions;
-	}
+        }
     }
 
     /**
@@ -624,8 +626,10 @@ public class GlobalActionsDialogLite implements DialogInterface.OnDismissListene
                 Settings.Secure.ADVANCED_REBOOT, 0, UserHandle.USER_CURRENT) == 1;
         return advancedRebootEnabled;
     }
+
     private List<Action> getCurrentRebootMenuItems() {
         List<Action> items = new ArrayList<Action>();
+
         String[] rebootMenuActions = mContext.getResources().getStringArray(
                     com.android.internal.R.array.config_rebootActionsList);
         boolean arEnabled = advancedRebootEnabled(mContext);
@@ -644,10 +648,12 @@ public class GlobalActionsDialogLite implements DialogInterface.OnDismissListene
         }
         return items;
     }
+
     private boolean showRebootSubmenu() {
         List<Action> rebootMenuItems = getCurrentRebootMenuItems();
         return rebootMenuItems.size() > 0 && !mUsePowerOptions;
     }
+
     private boolean usePowerOptionsMenu(List<Action> actions, Action shutdownAction, Action restartAction) {
         return actions.contains(shutdownAction) && actions.contains(restartAction)
                 && actions.size() > getMaxShownPowerItems();
@@ -678,11 +684,11 @@ public class GlobalActionsDialogLite implements DialogInterface.OnDismissListene
 
         ShutDownAction shutdownAction = new ShutDownAction();
         RestartAction restartAction = new RestartAction();
-        ArraySet<String> addedKeys = new ArraySet<>();
         RebootRecoveryAction rbtRecoveryAction = new RebootRecoveryAction();
         RebootBootloaderAction rbtBlAction = new RebootBootloaderAction();
         RebootFastbootAction rbtFbAction = new RebootFastbootAction();
         RebootSystemUIAction rbtsysuiAction = new RebootSystemUIAction();
+        ArraySet<String> addedKeys = new ArraySet<>();
         List<Action> tempActions = new ArrayList<>();
         CurrentUserProvider currentUser = new CurrentUserProvider();
 
@@ -783,6 +789,7 @@ public class GlobalActionsDialogLite implements DialogInterface.OnDismissListene
             tempActions.set(tempActions.indexOf(restartAction), new RestartAction());
         } else if (mPowerItems.contains(restartAction)) {
             mPowerItems.set(mPowerItems.indexOf(restartAction), new RestartAction());
+        }
         for (Action action : tempActions) {
             addActionItem(action);
         }
@@ -1107,43 +1114,53 @@ public class GlobalActionsDialogLite implements DialogInterface.OnDismissListene
             }
         }
     }
+
     final class RebootRecoveryAction extends SinglePressAction {
         RebootRecoveryAction() {
             super(com.android.systemui.res.R.drawable.ic_restart_recovery, com.android.systemui.res.R.string.global_action_reboot_recovery);
         }
+
         @Override
         public boolean showDuringKeyguard() {
             return true;
         }
+
         @Override
         public boolean showDuringRestrictedKeyguard() {
             return false;
         }
+
         @Override
         public boolean showBeforeProvisioning() {
             return true;
         }
+
         @Override
         public void onPress() {
             mWindowManagerFuncs.reboot(false, PowerManager.REBOOT_RECOVERY);
         }
     }
+
     final class RebootBootloaderAction extends SinglePressAction {
         RebootBootloaderAction() {
             super(com.android.systemui.res.R.drawable.ic_restart_bootloader, com.android.systemui.res.R.string.global_action_reboot_bootloader);
         }
+
         @Override
         public boolean showDuringKeyguard() {
             return true;
         }
+
         @Override
         public boolean showDuringRestrictedKeyguard() {
             return false;
         }
+
         @Override
         public boolean showBeforeProvisioning() {
             return true;
         }
+
         @Override
         public void onPress() {
             mWindowManagerFuncs.reboot(false, PowerManager.REBOOT_BOOTLOADER);
@@ -1155,18 +1172,22 @@ public class GlobalActionsDialogLite implements DialogInterface.OnDismissListene
             super(com.android.systemui.res.R.drawable.ic_lock_restart_fastboot,
                     com.android.systemui.res.R.string.global_action_reboot_fastboot);
         }
+
         @Override
         public boolean showDuringKeyguard() {
             return true;
         }
+
         @Override
         public boolean showDuringRestrictedKeyguard() {
             return false;
         }
+
         @Override
         public boolean showBeforeProvisioning() {
             return true;
         }
+
         @Override
         public void onPress() {
             mWindowManagerFuncs.reboot(false, PowerManager.REBOOT_FASTBOOT);
@@ -1900,6 +1921,7 @@ public class GlobalActionsDialogLite implements DialogInterface.OnDismissListene
          * @return whether this action should appear in the dialog when the keygaurd is showing.
          */
         boolean showDuringKeyguard();
+
 
         /**
          * @return whether this action should appear in the dialog when a restricted

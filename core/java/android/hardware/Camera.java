@@ -291,18 +291,23 @@ public class Camera {
          * if the package name does not falls in this bucket
          */
         String packageName = ActivityThread.currentOpPackageName();
+        if (packageName == null)
+            return true;
         List<String> packageList = new ArrayList<>(Arrays.asList(
                 SystemProperties.get("vendor.camera.aux.packagelist", ",").split(",")));
         List<String> packageExcludelist = new ArrayList<>(Arrays.asList(
                 SystemProperties.get("vendor.camera.aux.packageexcludelist", ",").split(",")));
+
         // Append packages from resources
         Resources res = ActivityThread.currentApplication().getResources();
         packageList.addAll(Arrays.asList(res.getStringArray(
                 com.android.internal.R.array.config_cameraAuxPackageAllowList)));
         packageExcludelist.addAll(Arrays.asList(res.getStringArray(
                 com.android.internal.R.array.config_cameraAuxPackageExcludeList)));
+
         return (packageList.isEmpty() || packageList.contains(packageName)) &&
                 !packageExcludelist.contains(packageName);
+    }
 
     /**
      * Returns the number of physical cameras available on this device.

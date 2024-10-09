@@ -76,6 +76,7 @@ import java.nio.ByteOrder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -1412,6 +1413,7 @@ public class Typeface {
             };
         }
     }
+
     private static void setFinalField(String fieldName, Typeface value) {
         synchronized (SYSTEM_FONT_MAP_LOCK) {
             try {
@@ -1425,6 +1427,7 @@ public class Typeface {
             }
         }
     }
+
     /** @hide */
     public static void updateDefaultFont(Resources res) {
         synchronized (SYSTEM_FONT_MAP_LOCK) {
@@ -1435,17 +1438,21 @@ public class Typeface {
                 // instead of crashing the app.
                 return;
             }
+
             setDefault(typeface);
+
             // Static typefaces in public API
             setFinalField("DEFAULT", create(getSystemDefaultTypeface(familyName), 0));
             setFinalField("DEFAULT_BOLD", create(getSystemDefaultTypeface(familyName), Typeface.BOLD));
             setFinalField("SANS_SERIF", DEFAULT);
+
             // For default aliases used in framework styles
             sSystemFontOverrides.put("sans-serif", typeface);
             sSystemFontOverrides.put("sans-serif-thin", create(typeface, 100, false));
             sSystemFontOverrides.put("sans-serif-light", create(typeface, 300, false));
             sSystemFontOverrides.put("sans-serif-medium", create(typeface, 500, false));
             sSystemFontOverrides.put("sans-serif-black", create(typeface, 900, false));
+
             setPublicDefaults(familyName);
         }
     }
