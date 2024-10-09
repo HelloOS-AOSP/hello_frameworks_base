@@ -1051,7 +1051,7 @@ public class CommandQueue extends IStatusBar.Stub implements
     public void showShutdownUi(boolean isReboot, String reason, boolean rebootCustom) {
         synchronized (mLock) {
             mHandler.removeMessages(MSG_SHOW_SHUTDOWN_UI);
-            mHandler.obtainMessage(MSG_SHOW_SHUTDOWN_UI, isReboot ? 1 : 0, 0, rebootCustom ? 1 : 0, reason)
+            mHandler.obtainMessage(MSG_SHOW_SHUTDOWN_UI, isReboot ? 1 : 0, rebootCustom ? 1 : 0, reason)
                     .sendToTarget();
         }
     }
